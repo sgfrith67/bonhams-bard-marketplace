@@ -5,7 +5,7 @@ Private marketplace for the `bonhams-bard` plugin (BARD, the Bonhams Auction Res
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add sfrith67/bonhams-bard-marketplace
+/plugin marketplace add sgfrith67/bonhams-bard-marketplace
 /plugin install bonhams-bard@bonhams-bard-marketplace
 ```
 
