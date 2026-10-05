@@ -1,0 +1,15 @@
+{
+  "name": "bonhams-bard",
+  "version": "0.2.1",
+  "description": "BARD (Bonhams Auction Research Database) for jewellery specialists and management: comparable-sales estimates, market-share briefs, sale recaps, data health checks and the BARD home page, all powered by the bonhams-bard connector.",
+  "author": {
+    "name": "Investair"
+  },
+  "keywords": [
+    "bonhams",
+    "auction",
+    "jewellery",
+    "comparables",
+    "market-share"
+  ]
+}
