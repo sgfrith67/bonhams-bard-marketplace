@@ -27,6 +27,10 @@ The BARD home page needs the Artifact feature in claude.ai. It uses only `bard_h
 - "Is the BARD data up to date?"
 - "Open BARD" or "bonhams home": opens the team's shared BARD page if one has been shared with you, and otherwise publishes one.
 
+## Changes in 0.2.2
+
+- The BARD home page's currency switch now offers GBP alongside USD and AUD. GBP figures use the same latest ECB rate as the other conversions.
+
 ## Changes in 0.2.0
 
 - Uses the bonhams-bard gateway instead of the Supabase connector; the home page no longer runs SQL.

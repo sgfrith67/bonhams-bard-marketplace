@@ -7,7 +7,7 @@ Use this reference to explain a number or to change a section. All figures come 
 - **Jewellery only:** a lot counts when it sold in a *dedicated jewellery sale*, meaning the sale name contains "jewel" and not watch, handbag, fashion, pens or wine. Lots from mixed or single-owner sales are tagged in the database but left out of the page.
 - **Live vs online:** sales named "Weekly" or "Online" are online, and everything else is live. BARD captures Bonhams' full online calendar but mostly only competitors' flagship live sales, so **market share and concentration use live auctions only**. Bonhams' online sales have their own section.
 - **Values:** buyer's total (`sold_price`) is the only figure all four houses publish. Hammer exists for Bonhams only, and estimate performance uses hammer because estimates are set against it.
-- **Currency:** every value is converted to USD at the **latest ECB reference rate**, refreshed daily inside the database, and the same rate applies to every period. Year-on-year changes therefore exclude currency movement. AUD figures on the page divide by the latest AUD rate.
+- **Currency:** every value is converted to USD at the **latest ECB reference rate**, refreshed daily inside the database, and the same rate applies to every period. Year-on-year changes therefore exclude currency movement. AUD and GBP figures on the page divide by the latest AUD or GBP rate.
 - **Financial year:** July to June, labelled by the June year (FY26 = Jul 2025 – Jun 2026). Share charts show only completed years. The current year appears once competitor sales for it are captured.
 - **Region:** taken from the city in the sale name (Geneva → Switzerland, Hong Kong → Asia, and so on), falling back to the sale currency.
 

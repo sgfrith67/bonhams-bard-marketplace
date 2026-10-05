@@ -273,6 +273,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <div class="seg small" role="group" aria-label="Currency">
           <button type="button" data-ccy="USD">USD</button>
           <button type="button" data-ccy="AUD">AUD</button>
+          <button type="button" data-ccy="GBP">GBP</button>
         </div>
       </div>
     </header>
@@ -304,7 +305,7 @@ const state = {
   liveAt: null,
   status: { kind: "idle", text: "" },
   role: store.get("role", "specialist"),
-  ccy: store.get("ccy", "USD"),
+  ccy: ["USD", "AUD", "GBP"].includes(store.get("ccy", "USD")) ? store.get("ccy", "USD") : "USD",
   fy: null,
   estFy: null,
   house: "all",

@@ -10,7 +10,7 @@ description: >
   Management view, that loads live data from the bonhams-bard connector each time it is
   opened.
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # BARD home page
@@ -85,7 +85,7 @@ Pages published before version 0.2.0 called a Supabase connector with SQL. Repub
 
 ### 6. Tell the user what they have
 
-Keep it short: the link and whether it is new or updated; for a new page, that sharing it with the team (from the page's share option) lets colleagues open the same page rather than publish their own; that the first open asks permission to use the connector once; that Specialist and Management switch at the top and USD/AUD converts every figure; any data caveats from step 1, especially a house with no recent sales; and whether the snapshot was refreshed and its date.
+Keep it short: the link and whether it is new or updated; for a new page, that sharing it with the team (from the page's share option) lets colleagues open the same page rather than publish their own; that the first open asks permission to use the connector once; that Specialist and Management switch at the top and USD/AUD/GBP converts every figure; any data caveats from step 1, especially a house with no recent sales; and whether the snapshot was refreshed and its date.
 
 ## Things that trip people up
 
