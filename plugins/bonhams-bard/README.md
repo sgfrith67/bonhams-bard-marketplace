@@ -27,6 +27,12 @@ The BARD home page needs the Artifact feature in claude.ai. It uses only `bard_h
 - "Is the BARD data up to date?"
 - "Open BARD" or "bonhams home": opens the team's shared BARD page if one has been shared with you, and otherwise publishes one.
 
+## Changes in 0.3.0
+
+- `bard-data` and `lot-estimate-guide` now search in English, French, Italian, German and Chinese (traditional and simplified), using a term table for stones, makers, origins, treatments and weights. They also match accented and unaccented spellings (for example "Paraíba" and "Paraiba").
+- `lot-estimate-guide` lists the decisive details per stone type and asks for them before searching; if they are not given it returns a tiered result at Low confidence. Comparables now record weight, maker, made-by and cased flags, with defined rules for each. A rule for wide comparable spreads, a stale-coverage line under the confidence, and a list of materially different lots were added.
+- `bard-data` adds search noise rules and keep-payloads-small guidance.
+
 ## Changes in 0.2.2
 
 - The BARD home page's currency switch now offers GBP alongside USD and AUD. GBP figures use the same latest ECB rate as the other conversions.

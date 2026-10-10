@@ -9,7 +9,7 @@ description: >
   estimate figures. Load it before the first BARD query in a conversation, and whenever
   a BARD number looks odd.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # BARD data guide
@@ -65,11 +65,37 @@ select: auction_house,auction_name,sale_date,lot_title,currency,est_low,est_high
 9. **History.** Bonhams, Christie's and Sotheby's run from January 2021; Phillips reaches back to 2013.
 10. **Regions** come from the city in the sale name, or from the sale currency when no city is named.
 11. **Financial year** runs July to June, labelled by the June year (FY26 = July 2025 to June 2026).
-12. **Item type** is matched on English keywords in the lot title, so French-titled lots (for example at Christie's Paris) fall into Other.
+12. **Item type** is matched on English keywords in the lot title, so French-titled lots (for example at Christie's Paris) fall into Other. For the same reason, search in French, Italian, German and Chinese as well as English (see Search tips), and filter on the title text rather than `item_type` when the lot may not be in English.
 
 ## Search tips
 
-Lot descriptions carry carat weights, origin, treatment and certificates ("Kashmir", "no indications of heating", "SSEF", "GIA"). `search_lots` requires every word, so use two or three short, distinct searches rather than one long one. Sotheby's Hong Kong titles include Chinese text; search the English description terms. Dedupe on `lot_url`.
+Lot descriptions carry carat weights, origin, treatment and certificates ("Kashmir", "no indications of heating", "SSEF", "GIA"). `search_lots` requires every word, so use two or three short, distinct searches rather than one long one. Dedupe on `lot_url`.
+
+**Search in every language the data holds, not only English.** The data mixes English, French (Christie's Paris, Geneva), Italian and German (Geneva, Milan, Zurich) and Chinese (Sotheby's Hong Kong titles, Bonhams Hong Kong titles and descriptions, Christie's and Phillips Hong Kong). English-only searches silently miss these lots, and `item_type` is wrong for French-titled lots (rule 12). For every concept in a query, run the English term and its equivalents below, then merge and dedupe on `lot_url`. For `query_table`, combine them in one `or=(...)` filter, for example `or=(lot_title.ilike.*tourmaline*,lot_title.ilike.*碧璽*,lot_title.ilike.*碧玺*,lot_title.ilike.*tormalina*,lot_title.ilike.*turmalin*)`.
+
+| Concept | French | Italian | German | Chinese (traditional / simplified) |
+|---|---|---|---|---|
+| Tourmaline | tourmaline | tormalina | Turmalin | 碧璽 / 碧玺 |
+| Paraíba | paraïba, paraiba | paraiba | Paraiba | 帕拉伊巴 |
+| Rubellite | rubellite | rubellite | Rubellit | 紅色碧璽 / 红色碧玺 |
+| Ring | bague | anello | Ring | 戒指 |
+| Diamond | diamant | diamante | Diamant | 鑽石 / 钻石 |
+| Sapphire | saphir | zaffiro | Saphir | 藍寶石 / 蓝宝石 |
+| Ruby | rubis | rubino | Rubin | 紅寶石 / 红宝石 |
+| Emerald | émeraude | smeraldo | Smaragd | 祖母綠 / 祖母绿 |
+| Pearl | perle | perla | Perle | 珍珠 |
+| Carat (weight) | carats | carati | Karat | 克拉 |
+| Unheated | non chauffé, sans traitement thermique | non riscaldato | unbehandelt, nicht erhitzt | 未經加熱 / 未经加热 |
+| Signed | signé | firmato | signiert | 簽名 |
+| Case / box | écrin, boîte | astuccio, scatola | Etui, Schachtel | 盒 |
+
+- This table is a starting point. Spot-check a new term with `limit=1` (the `totalRows` count) before relying on it, and add terms you find in real titles (other stones, makers' Chinese names, origins such as 緬甸 Burma, 克什米爾 or 喀什米爾 Kashmir, 哥倫比亞 Colombia, 莫桑比克 Mozambique, 巴西 Brazil).
+- Maker names are often transliterated in Chinese titles (卡地亞 Cartier, 蒂芙尼 Tiffany, 寶格麗 Bulgari, 梵克雅寶 Van Cleef & Arpels, 海瑞溫斯頓 Harry Winston). Search the Latin name and the Chinese name.
+- Sotheby's Hong Kong titles usually give the weight in the title ("4.14克拉"); read it there before fetching the description.
+- **Accents.** `ilike` is accent-sensitive. "Paraíba" and "Paraiba" are different strings, and a search for one can return nothing for the other. Search the stem ("*para*ba*") or both spellings, and search `lot_title` as well as `lot_description`.
+- **Noise.** Match the stone in `lot_title` where you can, and exclude multi-piece lots ("group of rings", "demi-parure", "two rings"), watch-and-ring pairs, and lots where the stone is only a side stone mentioned in the description. Do not rely on `item_type=Ring` alone.
+- **Made-by and cased flags.** Treat a lot as made by a maker only when the lot is signed or named in the title or description (for example "signed Tiffany & Co."); "with maker's mark" without a name is an unnamed maker, not a made-by. Treat a lot as cased only when the description says the maker's case, box or pouch accompanies it ("signed box", "accompanied by a signed case"). A bare keyword match on "case" is not enough (it also matches "encased"); read the description before flagging, and say "not checked" for lots you did not read.
+- **Keep payloads small.** Use `limit` of about 40, always pass `select`, and fetch `lot_description` only for the shortlist. `bard_home` returns a large payload; when you need only `fx` and `meta`, read those and ignore the rest.
 
 ## More detail
 

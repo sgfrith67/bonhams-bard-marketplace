@@ -11,7 +11,7 @@
       "name": "bonhams-bard",
       "source": "./plugins/bonhams-bard",
       "description": "Comparable-sales estimates, market-share briefs, sale recaps, data health checks and the BARD home page, powered by the bonhams-bard connector.",
-      "version": "0.2.2"
+      "version": "0.3.0"
     }
   ]
 }
